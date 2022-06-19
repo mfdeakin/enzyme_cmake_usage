@@ -1,0 +1,10 @@
+How to use Enzyme AD with Clang:
+
+Build Enzyme:
+cmake .. -G Ninja -D ENZYME_CLANG=ON -D ENZYME_EXTERNAL_SHARED_LIB=ON -D LLVM_DIR=/usr/lib/llvm/14/lib64/cmake/llvm -D Clang_DIR=/usr/lib/llvm/14/lib/cmake/clang
+ninja
+
+Compile your code:
+clang++ -fplugin=${enzyme_dir}/Enzyme/ClangEnzyme-14.so -flegacy-pass-manager main.cpp
+
+-flegacy-pass-manager is necessary until Enzyme supports the new pass manager; possibly only for a few more months
